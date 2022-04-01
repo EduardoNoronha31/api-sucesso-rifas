@@ -8,10 +8,10 @@ interface IRequest {
 }
 
 class ShowRifaService {
-  public async execute({ id }: IRequest): Promise<Rifa | undefined> {
+  public async execute({ id }: IRequest): Promise<Rifa> {
     const rifasRepository = getCustomRepository(RifaRepository);
 
-    const rifa = rifasRepository.findOne(id);
+    const rifa = await rifasRepository.findOne(id);
 
     if (!rifa) {
       throw new AppError('Product not found!');
